@@ -21,7 +21,7 @@ public class ListStack<E> implements StackInterface<E> {
         }
         Node<E> oldTop = top;
         top = newNode;
-        oldTop.next = top;
+        top.next = oldTop;
     }
 
     @Override
@@ -29,8 +29,7 @@ public class ListStack<E> implements StackInterface<E> {
         if(isEmpty()){
         return null;}
         E result = top.value;
-        top = top.prev;
-        top.next = null;
+        top = top.next;
         return result;
     }
 
@@ -54,18 +53,18 @@ public class ListStack<E> implements StackInterface<E> {
     public class Node<E> {
         private E value;
         private Node<E> next;
-        private Node<E> prev;
+
 
         public Node(final E value) {
             this.value = value;
             next = null;
-            prev = null;
+
         }
 
         public Node(final E value, final Node<E> next, final Node<E> prev) {
             this.value = value;
             this.next = next;
-            this.prev = prev;
+
         }
 
     }
